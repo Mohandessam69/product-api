@@ -6,7 +6,8 @@ async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).end();
   
-  const { message } = req.body;
+  const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+const message = body.message;
   if (!message) return res.status(400).json({ reply: 'مفيش رسالة', products: [] });
 
   try {
@@ -71,3 +72,4 @@ User message: "${message}"`
     return res.status(500).json({ reply: 'حصل خطأ: ' + err.message, products: [] });
   }
 }
+module.exports = handler;
