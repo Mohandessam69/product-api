@@ -73,4 +73,3 @@ User message: "${message}"`
 }
 
 module.exports = handler;
-```
