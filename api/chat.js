@@ -72,4 +72,6 @@ User message: "${message}"`
     return res.status(500).json({ reply: 'حصل خطأ: ' + err.message, products: [] });
   }
 }
-module.exports = handler;
+export default async function handler(req, res) {
+  // كل الكود
+}
