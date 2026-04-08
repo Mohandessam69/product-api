@@ -69,7 +69,7 @@ User message: "${message}"`
     return res.json({ reply: parsed.reply, products: [] });
 
   } catch (err) {
-    return res.status(500).json({ reply: 'حصل خطأ: ' + err.message, products: [] });
+return res.status(200).json({ reply: "...", products: [] });
   }
 }
 export default async function handler(req, res) {
