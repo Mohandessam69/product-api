@@ -9,13 +9,19 @@ export default async function handler(req, res) {
   
   res.setHeader('Access-Control-Allow-Origin', '*');
   
-  const results = (data.shopping_results || []).map(p => ({
-    title: p.title,
-    price: p.price,
-    source: p.source,
-    thumbnail: p.thumbnail,
-   link: p.product_link || p.offers?.[0]?.link || p.link
-  }));
+  const results = (data.shopping_results || []).map(p => {
+    const directLink = p.link?.includes('google.com') 
+      ? (p.product_link || p.offers?.[0]?.link || p.link)
+      : p.link;
+    
+    return {
+      title: p.title,
+      price: p.price,
+      source: p.source,
+      thumbnail: p.thumbnail,
+      link: directLink
+    };
+  });
   
   res.json(results);
 }
