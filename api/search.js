@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     price: p.price,
     source: p.source,
     thumbnail: p.thumbnail,
-    link: p.product_link || p.link
+   link: p.product_link || p.offers?.[0]?.link || p.link
   }));
   
   res.json(results);
