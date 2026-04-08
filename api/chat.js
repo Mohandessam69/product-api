@@ -1,3 +1,4 @@
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -76,7 +77,7 @@ User message: "${message}"`
     return res.json({ reply: parsed.reply, products: [] });
 
   } catch (err) {
-    return res.status(500).json({ reply: 'حصل خطأ في السيرفر، جرب تاني', products: [] });
+    return res.status(500).json({ reply: 'حصل خطأ: ' + err.message, products: [] });
   }
 }
 ```
